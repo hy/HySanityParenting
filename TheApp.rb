@@ -399,6 +399,11 @@ class TheApp < Sinatra::Base
 
 
 
+  post '/Hy1gone' do
+    send_SMS_to( '+17244489427', 'Do not forget your lunch!' )
+  end
+
+
 
   post '/send_SMS_to_Steve' do
     send_SMS_to( '+17244489427', 'Test number 2 from Deep' )
