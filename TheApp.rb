@@ -397,7 +397,10 @@ class TheApp < Sinatra::Base
   end 
 
   get '/TestEO' do
-    send_SMS_to( '+14152643801', "Hi Eric!!!" )
+    puts temperature = params['temperature']
+    puts proximityRSSI = params['proximityRSSI']
+    puts battery = params['battery']
+    puts identifier = params['identifier']
   end 
 
 
