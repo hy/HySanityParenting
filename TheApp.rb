@@ -11,8 +11,6 @@ What we have done so far . . .
 
 
 
-Next up . . . 
-
 # [--] Add a rule at: https://proximity.gimbal.com/developer/rules/new
 
 
