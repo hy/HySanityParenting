@@ -7,7 +7,6 @@
 # [--] Key to Lat: 37.785525, Lon: -122.397581
 # [--] TURN ON BLUETOOTH
 
-
 # [--] Add a rule at: https://proximity.gimbal.com/developer/rules/new
 
 
@@ -100,19 +99,6 @@ class TheApp < Sinatra::Base
 
   configure do
     begin
-      PTS_FOR_BG = 10
-      PTS_FOR_INS = 5
-      PTS_FOR_CARB = 5
-      PTS_FOR_LANTUS = 20
-      PTS_BONUS_FOR_LABELS = 5
-      PTS_BONUS_FOR_TIMING = 10
-
-      DEFAULT_POINTS = 2
-      DEFAULT_SCORE = 0 
-      DEFAULT_GOAL = 500.0
-      DEFAULT_PANIC = 24
-      DEFAULT_HI = 300.0
-      DEFAULT_LO = 70.0
 
       ONE_HOUR = 60.0 * 60.0
       ONE_DAY = 24.0 * ONE_HOUR
@@ -277,18 +263,7 @@ class TheApp < Sinatra::Base
  
 
   # For Example, to view this graph, nav to: 
-  #  http://pacific-ridge-7904.herokuapp.com/plot/bloodglucose.svg
- 
-  graph "bloodglucose", :prefix => '/plot' do
-    cursor = DB['checkins'].find({'mg' => {'$exists' => true}})
-    bg_a = Array.new
-    cursor.each{ |d|
-      bg_a.push(d['mg'])
-    }
-    bar "mg/dL", bg_a
-  end
-
-  #  http://pacific-ridge-7904.herokuapp.com/plot/history.svg
+  #  http://young-retreat-6253.herokuapp.com/plot/history.svg
   graph "history", :prefix => '/plot' do
     puts who = params['From'].to_s
     puts '  (' + who.class.to_s + ')'
@@ -439,7 +414,7 @@ class TheApp < Sinatra::Base
       'Who' => 'ZergLoaf BlueMeat',
       'When' => the_time_now.strftime("%A %B %d at %I:%M %p"),
       'Where' => where,
-      'What' => 'Door Magnet Sensor on Pauls fridge opened',
+      'What' => 'Door Magnet Sensor on fridge opened',
       'Why' => 'Fridge main door opening'
     }
     puts DB['checkins'].insert( event, {:w => 1} )
@@ -917,50 +892,6 @@ class TheApp < Sinatra::Base
   end
 
   end #do de-authorization
-
-
-
-  #############################################################################
-  # USER HELP MENU
-  #############################################################################
-  #
-  # Decide if it's a patient or caregiver who is requesting help and then 
-  # forward them the approp. content. . .  
-  #
-  #############################################################################
-  get /\/c\/help/x do
-
-    p_msg = 'HELP TOPICS: text Checkins, Config, or Feedback for info on each.'
-
-    c_msg = 'info=see settings; low67=low BG threshold at 67; high310=high threshold at 310; goal120=set 7 day goal to 120 pts; week=check stats'
-
-    msg = p_msg 
-    msg = c_msg if DB['groups'].find_one({'CaregiverID' => params['From']})
-
-    reply_via_SMS( msg )
-
-  end # get help
-
-
-  get /\/c\/(help)?checkins/x do
-    msg_for_patient = 'bg123b = glucose 123 at breakfast; c20d = 20g carbs at dinner; n5L = 5U novolog at lunch; L4 = 4U lantus; score = see points'
-
-    reply_via_SMS( msg_for_patient )
-  end # Checkins help
-
-
-  get /\/c\/(help)?config/x do
-    msg_for_patient = 'alarm5 = set reminder at 5 hours; +16505551212 = add caregiver at that ph num; info = check settings'
-
-    reply_via_SMS( msg_for_patient )
-  end # Config help
-
-
-  get /\/c\/(help)?feedback/x do
-    msg_for_patient = 'Have unanswered questions or comments? Text/call 650-275-2901 and leave a message!'
-
-    reply_via_SMS( msg_for_patient )
-  end # Feedback help
 
 
 
