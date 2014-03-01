@@ -99,6 +99,13 @@ class TheApp < Sinatra::Base
 
   configure do
     begin
+      
+      DEFAULT_POINTS = 2
+      DEFAULT_SCORE = 0
+      DEFAULT_GOAL = 500.0
+      DEFAULT_PANIC = 24
+      DEFAULT_HI = 300.0
+      DEFAULT_LO = 70.0
 
       ONE_HOUR = 60.0 * 60.0
       ONE_DAY = 24.0 * ONE_HOUR
