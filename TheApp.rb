@@ -403,6 +403,16 @@ class TheApp < Sinatra::Base
     send_SMS_to( '+17244489427', 'Do not forget your lunch!' )
   end
 
+  
+  get '/forgot' do
+    puts number = params['To']
+    puts "BAD PHONE NUMBER" if number.match(/\+1\d{10}\z/)==nil
+
+    puts msg = params['What']
+
+    send_SMS_to( params['To'], params['What'] )
+  end 
+
 
 
   post '/send_SMS_to_Steve' do
