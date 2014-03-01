@@ -1,7 +1,7 @@
 # TODO List:
 
 
-What we have done so far . . . 
+# What we have done so far . . . 
 
 # [--] Go to https://proximity.gimbal.com/developer/transmitters 
 # [--] Name first beacon Hy1, factory code: 7NBP-BY85C
