@@ -1480,6 +1480,21 @@ class TheApp < Sinatra::Base
 
     end #def log_exception
 
+
+
+
+###############################################################################
+# Further files . . .  (a.k.a. INCLUDE THE HELPERS)
+# Include the helpers refernced by the below require_relative, 
+# assuming those files-to-include feature the '.rb' extension . . . 
+###############################################################################
+require_relative 'HelpersForTheApp'
+
+###############################################################################
+# Helper modules included from files are available in routes but not in config
+###############################################################################
+
+
   end #helpers
   #############################################################################
   # END OF HELPERS
@@ -1557,18 +1572,7 @@ end #class TheApp
 # END OF TheAPP
 ###############################################################################
 
-
-###############################################################################
-# Further files . . .  (a.k.a. INCLUDE THE HELPERS)
-# Include the helpers refernced by the below require_relative, 
-# assuming those files-to-include feature the '.rb' extension . . . 
-###############################################################################
-require_relative 'HelpersForTheApp'
  
-
-###############################################################################
-# Helper modules included from files are available in routes but not in config
-###############################################################################
 
 
 
