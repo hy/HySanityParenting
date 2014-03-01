@@ -1,6 +1,13 @@
 
   module HelpersForTheApp
 
+      DEFAULT_POINTS = 2
+      DEFAULT_SCORE = 0
+      DEFAULT_GOAL = 500.0
+      DEFAULT_PANIC = 24
+      DEFAULT_HI = 300.0
+      DEFAULT_LO = 70.0
+
     ###########################################################################
     # SECTION: Generic Sinatra Helpers
     ###########################################################################
@@ -356,7 +363,7 @@
     def handle_checkin(value_f, flavor_text_s)
     puts where = 'handle_checkin'
     begin
-      pts = 2
+      pts = DEFAULT_POINTS
       value_s = value_f.to_s
 
       doc = { 'ID' => params['From'],
