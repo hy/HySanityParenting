@@ -1,6 +1,5 @@
 # TODO List:
 
-
 # What we have done so far . . . 
 
 # [--] Go to https://proximity.gimbal.com/developer/transmitters 
@@ -9,10 +8,7 @@
 # [--] TURN ON BLUETOOTH
 
 
-
-
 # [--] Add a rule at: https://proximity.gimbal.com/developer/rules/new
-
 
 
 
@@ -385,19 +381,6 @@ class TheApp < Sinatra::Base
     'Server is up! '  
   end
 
-  get '/gimbal' do
-    send_SMS_to( '+17244489427', 'That thing with the gimbal happened' )
-  end
-
-  get '/gimbal_hot' do
-    send_SMS_to( '+17244489427', 'Ouch!  Too hot!' )
-  end
-
-  get '/gimbal_abandon' do
-    send_SMS_to( '+17244489427', 'Babysitter seems to be away from baby' )
-  end
-
-
 
   get '/Hy1gone' do
     send_SMS_to( '+17244489427', 'Do not forget your lunch!' )
@@ -408,40 +391,16 @@ class TheApp < Sinatra::Base
     puts number = params['To']
     puts "BAD PHONE NUMBER" if number.match(/\+1\d{10}\z/)==nil
 
-    puts msg = params['What']
+    puts msg = 'Can you please pick up the ' + params['What']
 
     send_SMS_to( params['To'], params['What'] )
   end 
 
-
-
-  post '/send_SMS_to_Steve' do
-    send_SMS_to( '+17244489427', 'Test number 2 from Deep' )
+  get '/TestEO' do
+    send_SMS_to( '+14152643801', "Hi Eric!!!" )
   end 
 
-  get '/DeepsReplySMS' do 
-    reply_via_SMS( 'This is your reply' ) 
-  end  
 
-  get '/DeepsSMSsend' do
-    puts number = params['To']
-    puts "BAD PHONE NUMBER" if number.match(/\+1\d{10}\z/)==nil
-
-    puts msg = params['What']
-
-    send_SMS_to( params['To'], params['What'] )
-  end
-
-  post '/DeepsSMSsend' do
-    puts number = params['To']
-    puts "BAD PHONE NUMBER" if number.match(/\+1\d{10}\z/)==nil
-
-    puts msg = params['What']
-
-    send_SMS_to( params['To'], params['What'] )
-  end
-
-  # Look how easy Redis is to use. . . 
 
   # Let's give whatever we receive in the params to REDIS.set
   get '/redisify' do
@@ -460,7 +419,7 @@ class TheApp < Sinatra::Base
   #                     Physical Environemnt Sensing
   #############################################################################
   #
-  # Our sensor can detect vibration, magnetic proximity and/or moisture
+  # Sensor can detect vibration, magnetic proximity and/or moisture
   #
   #############################################################################
 
@@ -505,7 +464,7 @@ class TheApp < Sinatra::Base
       'When' => the_time_now.strftime("%A %B %d at %I:%M %p"),
       'Who' => 'ZergLoaf BlueMeat',
       'Where' => where, 
-      'What' => 'Vibration Sensor on top of Pauls fridge moved', 
+      'What' => 'Vibration Sensor on top of fridge moved', 
       'Why' => 'Possible freezer door opening'
     }
 
