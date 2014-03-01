@@ -356,7 +356,7 @@
     def handle_checkin(value_f, flavor_text_s)
     puts where = 'handle_checkin'
     begin
-      pts = DEFAULT_POINTS
+      pts = 2
       value_s = value_f.to_s
 
       doc = { 'ID' => params['From'],
