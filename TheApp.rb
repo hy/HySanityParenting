@@ -376,8 +376,7 @@ class TheApp < Sinatra::Base
 #    what = params['What']
     puts msg = 'Hey can you please grab the ' + params['What']
 
-    send_SMS_to( params['To'], params['What'] )
-    send_SMS_to( '+16306695813', msg )
+    send_SMS_to( params['To'], msg )
   end 
 
   get '/ouch' do
