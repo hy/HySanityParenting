@@ -31,3 +31,4 @@ gem 'json'
 
 gem 'pony'
 
+gem 'dropbox-sdk'

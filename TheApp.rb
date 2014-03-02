@@ -253,6 +253,16 @@ class TheApp < Sinatra::Base
       rescue Exception => e;  puts "[BAD] SendGrid config: #{e.message}";  end
     end
 
+    if ENV['DROPBOX_ACCESS_TOKEN']
+      # To set up an access token, go to https://www.dropbox.com/developers/core/start/ruby
+      begin
+        require 'dropbox_sdk'
+        $dropbox_handle = DropboxClient.new(ENV['DROPBOX_ACCESS_TOKEN'])
+        puts '[OK!] [9]  Dropbox Client Configured'
+      rescue Exception => e; puts "[BAD] Dropbox config: #{e.message}"; end
+    end
+
+
   end #configure
 
 
