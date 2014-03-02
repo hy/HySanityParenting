@@ -367,7 +367,6 @@ class TheApp < Sinatra::Base
   get '/Hy1gone' do
     send_SMS_to( '+17244489427', 'Do not forget your lunch!' )
   end
-
   
   get '/forgot' do
     puts number = params['To']
@@ -376,6 +375,10 @@ class TheApp < Sinatra::Base
     puts msg = 'Can you please pick up the ' + params['What']
 
     send_SMS_to( params['To'], params['What'] )
+  end 
+
+  get '/ouch' do
+    send_SMS_to( '+17244489427', 'Ouch mom, too hot!' )
   end 
 
   get '/TestEO' do
