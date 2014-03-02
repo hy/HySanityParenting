@@ -372,8 +372,7 @@ class TheApp < Sinatra::Base
     puts number = params['To']
     puts "BAD PHONE NUMBER" if number.match(/\+1\d{10}\z/)==nil
 
-    what = 'bottle'
-#    what = params['What']
+    what = params['What']
     puts msg = 'Hey can you please grab the ' + params['What']
 
     send_SMS_to( params['To'], msg )
